@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<HTML xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>家計簿管理アプリケーション</title>
+</head>
+
+<body>
+<h1>家計簿管理アプリケーション</h1>
+
+<div class="income_form">
+    <h2>収入登録</h2>
+
+    <form action="/incomeadd">
+        <label>収入</label>
+        <input name="income" type="text" />
+        <label>日付</label>
+        <input name="date" type="date" />
+        <label>タグ</label>
+        <input name="tag" type="text" />
+        <label>メモ</label>
+        <input name="memo" type="text" />
+        <input type="submit" value="登録">
+    </form>
+</div>
+
+<div class="incomelist">
+    <h2>現在の収入一覧</h2>
+    <table border="1" style="border-collapse:collapse;">
+        <thead>
+        <tr><th class="hidden">ID</th><th>収入</th><th>日付</th><th>タグ</th><th>メモ</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="income : ${incomeList}">
+            <td class="hidden" th:text="{income.id}"></td>
+            <td th:text="${income.income}"></td>
+            <td width="100px" th:text="${income.date}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div class="income_form">
+    <h2>支出登録</h2>
+
+    <form action="/exadd">
+        <label>支出</label>
+        <input name="expenditure" type="text" />
+        <label>日付</label>
+        <input name="date" type="date" />
+        <label>タグ</label>
+        <input name="tag" type="text" />
+        <label>メモ</label>
+        <input name="memo" type="text" />
+        <input type="submit" value="登録">
+    </form>
+</div>
+
+<div class="exlist">
+    <h2>現在の支出一覧</h2>
+    <table border="1" style="border-collapse:collapse;">
+        <thead>
+        <tr><th class="hidden">ID</th><th>収入</th><th>日付</th><th>タグ</th><th>メモ</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="expenditure : ${exList}">
+            <td class="hidden" th:text="{expenditure.id}"></td>
+            <td th:text="${expenditure.expenditure}"></td>
+            <td width="100px" th:text="${expenditure.date}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</HTML>
