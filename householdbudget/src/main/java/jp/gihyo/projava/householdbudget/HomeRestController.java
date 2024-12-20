@@ -13,18 +13,18 @@ import java.util.stream.Collectors;
 @org.springframework.web.bind.annotation.RestController
 public class HomeRestController {
     //収入のリスト
-    record IncomeItem(String id, String income, String memo,
-                      String tag, String date) {}
+    record IncomeItem(String id, String income, String date,
+                      String tag, String memo) {}
     private List<IncomeItem> incomeItems = new ArrayList<>();
 
     //収入追加
     @GetMapping("/restincomeadd")
-    String incomeaddItem(@RequestParam("income") String income,
-                         @RequestParam("memo") String memo,
+    String addItem(@RequestParam("income") String income,
+                         @RequestParam("date") String date,
                          @RequestParam("tag") String tag,
-                         @RequestParam("date") String date) {
+                         @RequestParam("memo") String memo) {
         String id = UUID.randomUUID().toString().substring(0, 8);
-        IncomeItem incomeitem = new IncomeItem(id, income, memo, tag, date);
+        IncomeItem incomeitem = new IncomeItem(id, income, date, tag, memo);
         incomeItems.add(incomeitem);
 
         return "収入を追加しました。";
@@ -41,6 +41,7 @@ public class HomeRestController {
 
 
     //支出のリスト
+    /*
     record ExpenditureItem(String id, String expenditure, String memo,
                       String tag, String date) {}
     private List<ExpenditureItem> expenditureItems = new ArrayList<>();
@@ -66,6 +67,8 @@ public class HomeRestController {
                 .collect(Collectors.joining(", "));
         return exresult;
     }
+
+     */
 
 
     @RequestMapping(value = "/resthello")

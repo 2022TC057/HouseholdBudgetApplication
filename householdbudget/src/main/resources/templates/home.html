@@ -11,7 +11,7 @@
 <div class="income_form">
     <h2>収入登録</h2>
 
-    <form action="/incomeadd">
+    <form action="/add">
         <label>収入</label>
         <input name="income" type="text" />
         <label>日付</label>
@@ -24,17 +24,24 @@
     </form>
 </div>
 
-<div class="incomelist">
+<div class="list">
     <h2>現在の収入一覧</h2>
     <table border="1" style="border-collapse:collapse;">
         <thead>
-        <tr><th class="hidden">ID</th><th>収入</th><th>日付</th><th>タグ</th><th>メモ</th></tr>
+        <tr><th class="hidden">ID</th>
+            <th>収入</th>
+            <th>日付</th>
+            <th>タグ</th>
+            <th>メモ</th>
+        </tr>
         </thead>
         <tbody>
         <tr th:each="income : ${incomeList}">
-            <td class="hidden" th:text="{income.id}"></td>
+            <td class="hidden" th:text="${income.id}"></td>
             <td th:text="${income.income}"></td>
             <td width="100px" th:text="${income.date}"></td>
+            <td width="100px" th:text="${income.tag}"></td>
+            <td width="100px" th:text="${income.memo}"></td>
         </tr>
         </tbody>
     </table>
@@ -42,9 +49,8 @@
 
 
 
-<div class="income_form">
+<div class="expenditure_form">
     <h2>支出登録</h2>
-
     <form action="/exadd">
         <label>支出</label>
         <input name="expenditure" type="text" />
@@ -62,17 +68,23 @@
     <h2>現在の支出一覧</h2>
     <table border="1" style="border-collapse:collapse;">
         <thead>
-        <tr><th class="hidden">ID</th><th>収入</th><th>日付</th><th>タグ</th><th>メモ</th></tr>
+        <tr><th class="hidden">ID</th>
+            <th>支出</th>
+            <th>日付</th>
+            <th>タグ</th>
+            <th>メモ</th>
+        </tr>
         </thead>
         <tbody>
-        <tr th:each="expenditure : ${exList}">
-            <td class="hidden" th:text="{expenditure.id}"></td>
+        <tr th:each="expenditure : ${expenditureList}">
+            <td class="hidden" th:text="${expenditure.id}"></td>
             <td th:text="${expenditure.expenditure}"></td>
             <td width="100px" th:text="${expenditure.date}"></td>
+            <td width="100px" th:text="${expenditure.tag}"></td>
+            <td width="100px" th:text="${expenditure.memo}"></td>
         </tr>
         </tbody>
     </table>
 </div>
-
 </body>
 </HTML>
