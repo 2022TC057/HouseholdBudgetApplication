@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>家計簿管理アプリケーション</title>
+    <link th:href="@{/home.css}" rel="stylesheet">
+
 </head>
 
 <body>
 <h1>家計簿管理アプリケーション</h1>
+
+<div class="v-line">
+    <hr>
+</div>
+
+<div>
+    <a th:href="@{/monthlySummary?month=1&year=2025}">収支グラフを見る</a>
+</div>
+
+<div>
+    <a th:href="@{/}">カレンダー</a>
+</div>
 
 <div class="income_form">
     <h2>収入登録</h2>
@@ -26,13 +40,16 @@
 
 <div class="list">
     <h2>現在の収入一覧</h2>
-    <table border="1" style="border-collapse:collapse;">
+    <table border="1">
         <thead>
-        <tr><th class="hidden">ID</th>
+        <tr>
+            <th class="hidden">ID</th>
             <th>収入</th>
-            <th>日付</th>
-            <th>タグ</th>
-            <th>メモ</th>
+            <th width="150px">日付</th>
+            <th width="150px">タグ</th>
+            <th width="150px">メモ</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -42,13 +59,34 @@
             <td width="100px" th:text="${income.date}"></td>
             <td width="100px" th:text="${income.tag}"></td>
             <td width="100px" th:text="${income.memo}"></td>
+            <td width="50px">
+            <button type="submit" id="update_button" onclick="
+                let row = this.parentElement.parentElement;
+                getElementById('update_id').value=row.cells[0].firstChild.data;
+                getElementById('update_income').value=row.cells[1].firstChild.data;
+                getElementById('update_date').value=row.cells[2].firstChild.data;
+                getElementById('update_tag').value=row.cells[3].firstChild.data;
+                getElementById('update_memo').value=row.cells[4].firstChild.data;
+                var dialog = getElementById('updateDialog');
+                dialog.style.left = ((window.innerWidth - 500) / 2) + 'px';
+                dialog.style.display = 'block';"
+                    >変更</button>
+        </td>
+            <td width="50px">
+                <form action="/delete">
+                    <button type="submit" id="delete_button">削除</button>
+                    <input type="hidden" name="id" th:value="${income.id}" />
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 
 
+<hr>
 
+<!-- 支出に関するHTML -->
 <div class="expenditure_form">
     <h2>支出登録</h2>
     <form action="/exadd">
@@ -64,15 +102,17 @@
     </form>
 </div>
 
-<div class="exlist">
+<div class="list">
     <h2>現在の支出一覧</h2>
-    <table border="1" style="border-collapse:collapse;">
+    <table border="1">
         <thead>
         <tr><th class="hidden">ID</th>
             <th>支出</th>
-            <th>日付</th>
-            <th>タグ</th>
-            <th>メモ</th>
+            <th width="150px">日付</th>
+            <th width="150px">タグ</th>
+            <th width="150px">メモ</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -82,9 +122,79 @@
             <td width="100px" th:text="${expenditure.date}"></td>
             <td width="100px" th:text="${expenditure.tag}"></td>
             <td width="100px" th:text="${expenditure.memo}"></td>
+            <td width="50px">
+                <button type="submit" id="exupdate_button" onclick="
+                let row = this.parentElement.parentElement;
+                getElementById('exupdate_id').value=row.cells[0].firstChild.data;
+                getElementById('exupdate_expenditure').value=row.cells[1].firstChild.data;
+                getElementById('exupdate_date').value=row.cells[2].firstChild.data;
+                getElementById('exupdate_tag').value=row.cells[3].firstChild.data;
+                getElementById('exupdate_memo').value=row.cells[4].firstChild.data;
+                var dialog = getElementById('exupdateDialog');
+                dialog.style.left = ((window.innerWidth - 500) / 2) + 'px';
+                dialog.style.display = 'block';
+                ">変更</button>
+            </td>
+            <td width="50px">
+                <form action="/exdelete">
+                    <button type="submit" id="exdelete_button">削除</button>
+                    <input type="hidden" name="id" th:value="${expenditure.id}" />
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
+
+</div>
+
+<!-- 収入変更 -->
+<div id="updateDialog">
+    <div class="income_form">
+        <h2>収入の変更</h2>
+        <form action="/update">
+            <input id="update_id" name="id" type="hidden" />
+            <label>収入</label>
+            <input id="update_income" name="income" type="text" />
+            <label>日付</label>
+            <input id="update_date" name="date" type="date" />
+            <label>タグ</label>
+            <input id="update_tag" name="tag" type="text" />
+            <label>メモ</label>
+            <input id="update_memo" name="memo" type="text" />
+            <div>
+                <button type="submit">変更</button>
+                <button type="reset"
+                        onclick="getElementById('updateDialog').style.display='none';">
+                    キャンセル
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 支出変更 -->
+<div id="exupdateDialog">
+    <div class="expenditure_form">
+        <h2>支出の変更</h2>
+        <form action="/exupdate">
+            <input id="exupdate_id" name="id" type="hidden" />
+            <label>支出</label>
+            <input id="exupdate_expenditure" name="expenditure" type="text" />
+            <label>日付</label>
+            <input id="exupdate_date" name="date" type="date" />
+            <label>タグ</label>
+            <input id="exupdate_tag" name="tag" type="text" />
+            <label>メモ</label>
+            <input id="exupdate_memo" name="memo" type="text" />
+            <div>
+                <button type="submit">変更</button>
+                <button type="reset"
+                        onclick="getElementById('exupdateDialog').style.display='none';">
+                    キャンセル
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </HTML>

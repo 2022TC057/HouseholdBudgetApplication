@@ -1,0 +1,66 @@
+body{
+margin: 30px;
+color: #283655;
+}
+input {
+border: 1px solid;
+}
+.hidden {
+display: none;
+}
+.income_form {
+padding: 0px 10px 10px 10px;
+border: 1px solid #4D648D;
+}
+.expenditure_form {
+padding: 0px 10px 10px 10px;
+border: 1px solid #4D648D;
+}
+.income_form form {
+display: grid;
+grid-template-columns: 100px 1fr;
+}
+.expenditure_form form {
+display: grid;
+grid-template-columns: 100px 1fr;
+}
+.income_form input[type="data"], select {
+width: 150px;
+}
+.expenditure_form input[type="data"], select {
+width: 150px;
+}
+
+/* 収支一覧 */
+.incomelist table {
+width: 100%;
+border: 1px solid;
+border-collapse: collapse;
+}
+
+.expenditurelist table {
+width: 100%;
+border: 1px solid;
+border-collapse: collapse;
+}
+
+/* 収支更新ダイアログ */
+#updateDialog {
+display: none;
+background-color: #FFFFFF;
+border: 2px double;
+width: 500px;
+position: fixed;
+top: 120px;
+z-index: 9999;
+}
+
+#exupdateDialog {
+display: none;
+background-color: #FFFFFF;
+border: 2px double;
+width: 500px;
+position: fixed;
+top: 120px;
+z-index: 9999;
+}
