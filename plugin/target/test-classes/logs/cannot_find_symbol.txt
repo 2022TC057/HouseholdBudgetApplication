@@ -1,0 +1,4 @@
+[ERROR] /C:/Users/kenji/java program/sample/src/main/java/App.java:[10,9]
+error: cannot find symbol
+  symbol:   class MissingClass
+  location: class App

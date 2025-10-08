@@ -1,0 +1,2 @@
+[ERROR] Failed to execute goal on project sample-app: Could not resolve dependencies for project sample:sample-app:jar:1.0-SNAPSHOT:
+Could not find artifact com.example:missing-lib:jar:9.9.9 in central (https://repo.maven.apache.org/maven2)

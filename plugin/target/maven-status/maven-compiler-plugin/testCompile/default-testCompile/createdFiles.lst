@@ -1,0 +1,5 @@
+jp\gihyou\projava\plugin\CompilerOptionTooOldPluginTest.class
+jp\gihyou\projava\plugin\Auth401PluginTest.class
+jp\gihyou\projava\plugin\CannotFindSymbolPluginTest.class
+jp\gihyou\projava\plugin\TestUtil.class
+jp\gihyou\projava\plugin\DependencyNotFoundPluginTest.class

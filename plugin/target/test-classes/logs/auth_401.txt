@@ -1,0 +1,4 @@
+[ERROR] Failed to read artifact descriptor for com.github.kornilova203:mongo-jdbc-driver:jar:1.19
+[ERROR] Could not transfer artifact com.github.kornilova203:mongo-jdbc-driver:pom:1.19
+from/to flyway-community-db-support (https://maven.pkg.github.com/flyway/flyway-community-db-support):
+status code: 401, reason phrase: Unauthorized (401)
